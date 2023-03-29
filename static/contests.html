@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Contests</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Add custom CSS here -->
+    <link href="css/sb-admin.css" rel="stylesheet">
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+
+    <!-- jQuery -->
+    <script src="js/jquery-1.10.2.js"></script>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="js/bootstrap.js"></script>
+  </head>
+
+  <body>
+
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="dash.html">KQ 2023</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav side-nav">
+            <li><a href="dash.html">Dashboard</a></li>
+            <li><a href="questions.html">Questions</a></li>
+            <li class="active"><a href="contests.html">Contests</a></li>
+            <li><a href="pictures.html">Pictures</a></li>
+            <li><a href="montage.html">Montage</a></li>
+            <li><a href="scav.html">Savenger Hunt</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Resources <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="https://youtu.be/1dPxclHQl9c">Youtube Link</a></li>
+                <li><a href="http://www.kure.stuorg.iastate.edu/listen/">KURE Stream</a></li>
+                <li><a href="https://docs.google.com/document/d/1DOG1fn3aEvuldQzER74YnYW4aunMzvRo6RZM3RlmmTM/edit?usp=share_link">Search Tips</a></li>
+                <li><a href="https://docs.google.com/spreadsheets/d/17WbNeoMFz0htTEWIAe2Pax4yjUieGdauSWHVMGqmrGo/edit?usp=share_link">Past Questions</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </nav>
+
+      <div id="page-wrapper">
+
+        <div class="row">
+          <div class="col-lg-12">
+            <h1>Contest Form</h1>
+          </div>
+        </div><!-- /.row -->
+
+        <div class="row">
+          <div class="col-lg-6">
+            <form>
+              <div class="form-group">
+                <label for="inputEmail">Email address</label>
+                <input type="email" class="form-control" id="inputEmail" placeholder="Email" required>
+              </div>
+              <div class="form-group">
+                <label>KQ Contest Email</label>
+                <p class="form-control-static">kq.central@kaleidoquiz.org</p>
+              </div>
+              <div class="form-group">
+                <label for="Subject">Subject</label>
+                <input type="form-control" class="form-control" id="subject" placeholder="Question #X Contest">
+              </div>
+              <div class="form-group">
+                <label>Text area</label>
+                <textarea class="form-control" rows="11" wrap="hard" placeholder="Team Name: &#10;Question: &#10;Correct Reponse: &#10;Our Response: &#10;Source: &#10;Justification: " required></textarea>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputFile">Source File</label>
+                <input type="file" id="sourceFile">
+                <p class="help-block">File Input</p>
+              </div>
+              
+              <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+          </div>
+          
+          <div class="col-lg-6">
+            <iframe src="https://docs.google.com/document/d/e/2PACX-1vSDGw0pNBrKofVzPUutCTqhiGJKjSrXk1LUJNkPPgwi7K_FtE_XA-k3TcvYitexQH_XF7OoyMsULwkX/pub?embedded=true" width="100%" height="600"></iframe>
+          </div>
+
+        </div><!-- /.row -->
+
+      </div><!-- /#page-wrapper -->
+
+    </div><!-- /#wrapper -->
+  </body>
+</html>
