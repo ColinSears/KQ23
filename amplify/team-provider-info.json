@@ -1,0 +1,50 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-kq23-dev-163926-authRole",
+      "UnauthRoleArn": "arn:aws:iam::139931945946:role/amplify-kq23-dev-163926-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::139931945946:role/amplify-kq23-dev-163926-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-kq23-dev-163926-deployment",
+      "UnauthRoleName": "amplify-kq23-dev-163926-unauthRole",
+      "StackName": "amplify-kq23-dev-163926",
+      "StackId": "arn:aws:cloudformation:us-east-2:139931945946:stack/amplify-kq23-dev-163926/2de29770-ce7a-11ed-8884-06482c27f19c",
+      "AmplifyAppId": "dfie0ozgwh6e6"
+    }
+  },
+  "production": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-kq23-production-164030-authRole",
+      "UnauthRoleArn": "arn:aws:iam::139931945946:role/amplify-kq23-production-164030-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::139931945946:role/amplify-kq23-production-164030-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-kq23-production-164030-deployment",
+      "UnauthRoleName": "amplify-kq23-production-164030-unauthRole",
+      "StackName": "amplify-kq23-production-164030",
+      "StackId": "arn:aws:cloudformation:us-east-2:139931945946:stack/amplify-kq23-production-164030/5456f3b0-ce7a-11ed-8b0b-02ce01b4d39c",
+      "AmplifyAppId": "dfie0ozgwh6e6",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-kq23-production-164030-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
+    },
+    "categories": {
+      "function": {
+        "Node": {
+          "deploymentBucketName": "amplify-kq23-production-164030-deployment",
+          "s3Key": "amplify-builds/Node-6c74724c503064653651-build.zip"
+        },
+        "KQTrigger75cea6e7": {
+          "deploymentBucketName": "amplify-kq23-production-164030-deployment",
+          "s3Key": "amplify-builds/KQTrigger75cea6e7-436c693159707453466a-build.zip"
+        }
+      },
+      "auth": {
+        "kq23": {}
+      },
+      "storage": {
+        "KQ": {}
+      },
+      "api": {
+        "production": {}
+      }
+    }
+  }
+}

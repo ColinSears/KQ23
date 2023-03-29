@@ -1,0 +1,12 @@
+{
+  "resourceName": "KQ",
+  "tableName": "KQ23",
+  "partitionKey": {
+    "fieldName": "temp",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": [
+    "KQTrigger75cea6e7"
+  ]
+}
