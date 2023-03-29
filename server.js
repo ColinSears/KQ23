@@ -86,7 +86,19 @@ function startServer() {
   var server = http.createServer(app);
 
   // Connect any incoming WebSocket connection to ShareDB
-  var wss = new WebSocket.Server({server: server});
+  var wss = new WebSocket.Server({
+    server: server,
+    // Set the WebSocket server to use a secure connection
+    verifyClient: function (info, cb) {
+      // Check if the request is secure
+      if (info.secure) {
+        cb(true);
+      } else {
+        cb(false, 400, 'Secure connection required');
+      }
+    }
+  });
+
   wss.on('connection', function(ws) {
     var stream = new WebSocketJSONStream(ws);
     backend.listen(stream);
@@ -97,6 +109,8 @@ function startServer() {
     res.sendFile(__dirname + '/editor.html');
   });
 
-  server.listen(8080);
-  console.log('Listening on http://localhost:8080');
+  // Start the server on port 443 with HTTPS protocol
+  server.listen(443, function () {
+    console.log('Listening on https://localhost:443');
+  });
 }
