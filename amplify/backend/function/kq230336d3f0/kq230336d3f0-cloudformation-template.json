@@ -15,14 +15,6 @@
     },
     "s3Key": {
       "Type": "String"
-    },
-    "storageKQName": {
-      "Type": "String",
-      "Default": "storageKQName"
-    },
-    "storageKQArn": {
-      "Type": "String",
-      "Default": "storageKQArn"
     }
   },
   "Conditions": {
@@ -55,12 +47,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "Node",
+            "kq230336d3f0",
             {
               "Fn::Join": [
                 "",
                 [
-                  "Node",
+                  "kq230336d3f0",
                   "-",
                   {
                     "Ref": "env"
@@ -97,12 +89,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "kq23LambdaRole0e4e3b3a",
+            "kq23LambdaRolee91a9af5",
             {
               "Fn::Join": [
                 "",
                 [
-                  "kq23LambdaRole0e4e3b3a",
+                  "kq23LambdaRolee91a9af5",
                   "-",
                   {
                     "Ref": "env"
@@ -168,34 +160,6 @@
                   }
                 ]
               }
-            },
-            {
-              "Effect": "Allow",
-              "Action": [
-                "dynamodb:DescribeTable",
-                "dynamodb:GetItem",
-                "dynamodb:Query",
-                "dynamodb:Scan",
-                "dynamodb:PutItem",
-                "dynamodb:UpdateItem",
-                "dynamodb:DeleteItem"
-              ],
-              "Resource": [
-                {
-                  "Ref": "storageKQArn"
-                },
-                {
-                  "Fn::Join": [
-                    "/",
-                    [
-                      {
-                        "Ref": "storageKQArn"
-                      },
-                      "index/*"
-                    ]
-                  ]
-                }
-              ]
             }
           ]
         }
