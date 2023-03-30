@@ -110,7 +110,6 @@ function createDocs(callback) {
 
 function startServer() {
   // Create a web server to serve files and listen to WebSocket connections
-  var app = express();
   app.use(express.static('static'));
   app.use(express.static('node_modules/quill/dist'));
   var server = http.createServer(app);

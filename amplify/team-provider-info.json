@@ -15,7 +15,7 @@
       "function": {
         "kq230336d3f0": {
           "deploymentBucketName": "amplify-kq23-production-213442-deployment",
-          "s3Key": "amplify-builds/kq230336d3f0-4259667053566e6c3778-build.zip"
+          "s3Key": "amplify-builds/kq230336d3f0-3357797270466e794b42-build.zip"
         }
       },
       "api": {
