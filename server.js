@@ -86,18 +86,7 @@ function startServer() {
   var server = http.createServer(app);
 
   // Connect any incoming WebSocket connection to ShareDB
-  var wss = new WebSocket.Server({
-    server: server,
-    // Set the WebSocket server to use a secure connection
-    verifyClient: function (info, cb) {
-      // Check if the request is secure
-      if (info.secure) {
-        cb(true);
-      } else {
-        cb(false, 400, 'Secure connection required');
-      }
-    }
-  });
+  var wss = new WebSocket.Server({server: server});	
 
   wss.on('connection', function(ws) {
     var stream = new WebSocketJSONStream(ws);
