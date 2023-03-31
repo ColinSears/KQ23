@@ -15,68 +15,78 @@ createDocs(startServer);
 function createDocs(callback) {
   var connection = backend.connect();
   var counter = connection.get('KQ', 'counter');
-  var doc1 = connection.get('KQ', 'richtext1');
-  var doc2 = connection.get('KQ', 'richtext2');
-  var doc3 = connection.get('KQ', 'richtext3');
-  var doc4 = connection.get('KQ', 'richtext4');
-  var doc5 = connection.get('KQ', 'richtext5');
-  var doc6 = connection.get('KQ', 'richtext6');
-  var doc7 = connection.get('KQ', 'richtext7');
-  var doc8 = connection.get('KQ', 'richtext8');
-  var timerDoc = connection.get('KQ', 'timer');
+  var docs = [    connection.get('KQ', 'richtext1'),    connection.get('KQ', 'richtext2'),    connection.get('KQ', 'richtext3'),    connection.get('KQ', 'richtext4'),    connection.get('KQ', 'richtext5'),    connection.get('KQ', 'richtext6'),    connection.get('KQ', 'richtext7'),    connection.get('KQ', 'richtext8')  ];
+  var timerDocs = [    connection.get('KQ', 'timer1'),    connection.get('KQ', 'timer2'),    connection.get('KQ', 'timer3'),    connection.get('KQ', 'timer4'),    connection.get('KQ', 'timer5')  ];
   
-  doc1.fetch(function(err) {
-    if (err) throw err;
-    if (doc1.type === null) {
-      doc1.create({ops: []}, 'rich-text', function(err) {
-        
-          if (err) throw err;
-        doc2.create({ops: []}, 'rich-text', function(err) {
-          
-          if (err) throw err;
-          doc3.create({ ops: []}, 'rich-text', function(err) {
-            
-            if (err) throw err;
-            doc4.create({ops: []}, 'rich-text', function(err) {
-
-              if (err) throw err;
-              doc5.create({ops: []}, 'rich-text', function(err) {
-                
-                if (err) throw err;
-                doc6.create({ops: []}, 'rich-text', function(err){
-                  
-                  if (err) throw err;
-                  counter.create({numClicks: 0}, function(err){
-                    
-                    if (err) throw err;
-                    doc7.create({ ops: []}, 'rich-text', function(err) {
-                      
-                      if (err) throw err;
-                      doc8.create({ops: []}, 'rich-text', function(err) {
-                        
-                        if (err) throw err;
-                        timerDoc.create({originalTime: 0, remainingTime: 0}, callback);
-      
-                        // Add event listener to update the timer
-                        timerDoc.on('op', function(op, source) {
-                          if (source && source !== connection.id) {
-                            broadcastTimerUpdate(source);
-                          }
-                        });
-                      });
-                    });
-                  });
-                }); 
-              });
-            });
-          });
-        });
+  const createDoc = (doc, type) => {
+    return new Promise((resolve, reject) => {
+      doc.create({ ops: [] }, type, (err) => {
+        if (err) reject(err);
+        resolve();
       });
-      return;
+    });
+  };
+  
+  const createCounter = (counter) => {
+    return new Promise((resolve, reject) => {
+      counter.create({ numClicks: 0 }, (err) => {
+        if (err) reject(err);
+        resolve();
+      });
+    });
+  };
+  
+  const createTimerDoc = (timerDoc) => {
+    return new Promise((resolve, reject) => {
+      timerDoc.create({ originalTime: 0, remainingTime: 0 }, (err) => {
+        if (err) {
+          reject(err);
+        } else {
+          // Add event listener to update the timer
+          timerDoc.on('op', (op, source) => {
+            if (source && source !== connection.id) {
+              broadcastTimerUpdate(source);
+            }
+          });
+  
+          resolve();
+        }
+      });
+    });
+  };
+  
+  docs[0].fetch(function(err) {
+    if (err) throw err;
+  
+    if (docs[0].type === null) {
+      Promise.all([
+        createDoc(docs[0], 'rich-text'),
+        createDoc(docs[1], 'rich-text'),
+        createDoc(docs[2], 'rich-text'),
+        createDoc(docs[3], 'rich-text'),
+        createDoc(docs[4], 'rich-text'),
+        createDoc(docs[5], 'rich-text'),
+        createDoc(docs[6], 'rich-text'),
+        createDoc(docs[7], 'rich-text'),
+        createCounter(counter),
+        createTimerDoc(timerDocs[0]),
+        createTimerDoc(timerDocs[1]),
+        createTimerDoc(timerDocs[2]),
+        createTimerDoc(timerDocs[3]),
+        createTimerDoc(timerDocs[4])
+      ])
+        .then(() => {
+          callback();
+        })
+        .catch((err) => {
+          throw err;
+        });
+    } else {
+      callback();
     }
-    callback();
   });
-}
+} 
+
 
 function startServer() {
   // Create a web server to serve files and listen to WebSocket connections

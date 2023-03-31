@@ -20,7 +20,13 @@ var doc6 = connection.get('KQ', 'richtext6');
 var doc7 = connection.get('KQ', 'richtext7');
 var doc8 = connection.get('KQ', 'richtext8');
 var counter = connection.get('KQ', 'counter');
-var timer = connection.get('KQ','timer')
+var timer = connection.get('KQ','timer1')
+var timer2 = connection.get('KQ','timer2')
+var timer3 = connection.get('KQ','timer3')
+var timer4 = connection.get('KQ','timer4')
+var timer5 = connection.get('KQ','timer5')
+
+
 
 
 
@@ -336,7 +342,7 @@ function saveQuestionResult(result) {
     result: result
   };
 
-  localStorage.setItem('questionResult', (data));
+  localStorage.setItem('questionResult', data);
   console.log("logged data", data)
 }
 
@@ -346,6 +352,102 @@ const lostBtn = document.getElementById('lostBtn');
 wonBtn.addEventListener('click', function() {saveQuestionResult('won');});
 
 lostBtn.addEventListener('click', function() {saveQuestionResult('lost');});
+
+//Event, Picture, Montage, Scav Timers
+let remainingTime2 = 0;
+let originalTime2 = '';
+let timerId2;
+const inputField2 = document.getElementById('timer2-input');
+const inputField3 = document.getElementById('timer3-input');
+const inputField4 = document.getElementById('timer3-input');
+const inputField5 = document.getElementById('timer4-input');
+
+function subscribeToTimer(timer) {
+  console.log('subscribeToTimer called with timer:', timer);
+  // Get initial value of document and subscribe to changes
+  timer.subscribe(function(err) {
+    if (err) throw err;
+    // Start the timer with the initial value from the sharedb document
+    remainingTime2 = timer.data.remainingTime2 || 0;
+    originalTime2 = timer.data.originalTime2 || '';
+    if (remainingTime2 > 0) {
+      startTimer();
+    }
+  });
+
+  // Add an event listener to the sharedb document to update the timer element
+  timer.on('op', function(op, source) {
+    if (source !== false) return;
+    remainingTime2 = timer.data.remainingTime2 || 0;
+    updateTimerElement(remainingTime2);
+  });
+}
+
+// Update the sharedb document with the current remaining time	
+function updateTimerDoc(timer) {	
+  timer.fetch(function(err) {	
+    if (err) throw err;	
+    var remainingTime2 = timer.data.remainingTime2 || 0;	
+    timer.submitOp([{ p: ['remainingTime'], na: -1, v: timer.version + 1 }], function(err) {	
+      if (err) throw err;	
+    });	
+  });	
+}	
+
+function startTimer(timer) {
+  const timeInputValue = inputField.value;
+  if (!timeInputValue) {
+    // If no time input, do nothing
+    return;
+  }
+  const [hours, minutes] = timeInputValue.split(':').map(parseFloat);
+
+  if (remainingTime2 > 0) {
+    // Stop the timer if it's already running
+    clearInterval(timerId2);
+    timerId2 = null;
+    remainingTime2 = 0;
+    inputField.value = originalTime2;
+    timer.submitOp([{ p: ['remainingTime'], na: remainingTime2 }]);
+    return;
+  }
+
+  originalTime2 = timeInputValue;
+  remainingTime2 = (hours * 3600) + (minutes * 60);
+
+  // Update the sharedb document with the original time and remaining time
+  timer.submitOp([{ p: ['originalTime'], oi: originalTime2 }]);
+  timer.submitOp([{ p: ['remainingTime'], oi: remainingTime2 }]);
+
+  updateTimerElement(remainingTime2);
+
+  // Start the timer
+  timerId2 = setInterval(function() {
+    if (remainingTime2 <= 0) {
+      clearInterval(timerId);
+      timerId = null;
+      inputField.value = originalTime2;
+      timerElement.innerHTML = "Time's up!";
+      // Update the sharedb document with the remaining time
+      timer.submitOp([{ p: ['remainingTime'], na: remainingTime2 }]);
+    } else {
+      remainingTime2--;
+      updateTimerElement(remainingTime2);
+      updateTimerDoc(timer);
+    }
+  }, 1000);
+}
+
+console.log("timer value before subscribeToTimer: ", timer2);
+subscribeToTimer(timer2);
+subscribeToTimer(timer3);
+subscribeToTimer(timer4);
+subscribeToTimer(timer5);
+
+inputField2.addEventListener('input', function() { startTimer(timer2); });
+inputField3.addEventListener('input', function() { startTimer(timer3); });
+inputField4.addEventListener('input', function() { startTimer(timer4); });
+inputField5.addEventListener('input', function() { startTimer(timer5); });
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"quill":11,"reconnecting-websocket":12,"rich-text":13,"sharedb/lib/client":22}],2:[function(require,module,exports){
 (function (process,global,setImmediate){(function (){
