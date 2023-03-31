@@ -18,9 +18,7 @@ var doc6 = connection.get('KQ', 'richtext6');
 var doc7 = connection.get('KQ', 'richtext7');
 var doc8 = connection.get('KQ', 'richtext8');
 var counter = connection.get('KQ', 'counter');
-var timer = connection.get('KQ','timer')
-
-
+var timer = connection.get('KQ','timer1')
 
 //Event Theme
 doc1.subscribe(function(err) {

@@ -8,18 +8,20 @@
 
     <title>Montage</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet">
+     <!-- Bootstrap core CSS -->
+     <link href="css/bootstrap.css" rel="stylesheet">
 
-    <!-- Add custom CSS here -->
-    <link href="css/sb-admin.css" rel="stylesheet">
-    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
-
-    <!-- jQuery -->
-    <script src="js/jquery-1.10.2.js"></script>
-
-    <!-- Bootstrap JavaScript -->
-    <script src="js/bootstrap.js"></script>
+     <!-- Add custom CSS here -->
+     <link href="css/sb-admin.css" rel="stylesheet">
+     <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+ 
+     <!-- jQuery -->
+     <script src="js/jquery-1.10.2.js"></script>
+ 
+     <!-- Bootstrap JavaScript -->
+     <script src="js/bootstrap.js"></script>
+ 
+     <link href="quill.snow.css" rel="stylesheet">
   </head>
 
   <body>
@@ -43,7 +45,6 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav side-nav">
             <li><a href="dash.html">Dashboard</a></li>
-            <li><a href="questions.html">Questions</a></li>
             <li><a href="contests.html">Contests</a></li>
             <li class="active"><a href="pictures.html">Pictures</a></li>
             <li><a href="montage.html">Montage</a></li>
@@ -65,39 +66,20 @@
         <div class="row">
             <div class="col-lg-12">
               <h1>Pictures</h2>
-              <div class="table-responsive">
-                <table class="table table-hover table-striped">
-                  <thead>
-                    <tr>
-                      <th></th>
-                      <th>Prompt</th>
-                      <th>Our Picture</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>1.</td>
-                      <td>Collab Text</td>
-                      <td>
-                        <p><label for="file" style="cursor: pointer;">Upload Image</label></p>
-                        <img id="output" width="250" height=""250/>	
-                        <input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)" style="display: none;">
-
-                        <script>
-                          var loadFile = function(event) {
-                            var image = document.getElementById('output');
-                            image.src = URL.createObjectURL(event.target.files[0]);
-                          };
-                          </script>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
             </div>
         </div><!-- /.row -->
+
+        <div class="row">
+          <div class="col-lg-12">
+            <div id="pictures"></div>
+          </div>
+      </div><!-- /.row -->
+
+
+
       </div><!-- /#page-wrapper -->
 
     </div><!-- /#wrapper -->
   </body>
+  <script src="dist/pictureBundle.js"></script>        
 </html>
