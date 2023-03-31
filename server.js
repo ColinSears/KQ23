@@ -97,6 +97,6 @@ function startServer() {
     res.sendFile(__dirname + '/static/dash.html');
   });
 
-  server.listen(8080);
-  console.log('Listening on http://localhost:8080');
+  server.listen(3000);
+  console.log('Listening on Port 3000');
 }
