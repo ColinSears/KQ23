@@ -86,8 +86,7 @@ function startServer() {
   var server = http.createServer(app);
 
   // Connect any incoming WebSocket connection to ShareDB
-  var wss = new WebSocket.Server({server: server});	
-
+  var wss = new WebSocket.Server({server: server});
   wss.on('connection', function(ws) {
     var stream = new WebSocketJSONStream(ws);
     backend.listen(stream);
@@ -95,11 +94,9 @@ function startServer() {
 
   // Serve the editor HTML page
   app.get('/', function(req, res) {
-    res.sendFile(__dirname + '/editor.html');
+    res.sendFile(__dirname + '/static/dash.html');
   });
 
-  // Start the server on port 443 with HTTPS protocol
-  server.listen(443, function () {
-    console.log('Listening on port 443');
-  });
+  server.listen(8080);
+  console.log('Listening on http://localhost:8080');
 }
