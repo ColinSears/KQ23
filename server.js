@@ -15,7 +15,7 @@ createDocs(startServer);
 function createDocs(callback) {
   var connection = backend.connect();
   var counter = connection.get('KQ', 'counter');
-  var docs = [    connection.get('KQ', 'richtext1'),    connection.get('KQ', 'richtext2'),    connection.get('KQ', 'richtext3'),    connection.get('KQ', 'richtext4'),    connection.get('KQ', 'richtext5'),    connection.get('KQ', 'richtext6'),    connection.get('KQ', 'richtext7'),    connection.get('KQ', 'richtext8')  ];
+  var docs = [    connection.get('KQ', 'richtext1'),    connection.get('KQ', 'richtext2'),    connection.get('KQ', 'richtext3'),    connection.get('KQ', 'richtext4'),    connection.get('KQ', 'richtext5'),    connection.get('KQ', 'richtext6'),    connection.get('KQ', 'richtext7'),    connection.get('KQ', 'richtext8'), connection.get('KQ', 'richtext9'), connection.get('KQ', 'richtext10'), connection.get('KQ', 'richtext11')  ];
   var timerDocs = [    connection.get('KQ', 'timer1'),    connection.get('KQ', 'timer2'),    connection.get('KQ', 'timer3'),    connection.get('KQ', 'timer4'),    connection.get('KQ', 'timer5')  ];
   
   const createDoc = (doc, type) => {
@@ -68,6 +68,9 @@ function createDocs(callback) {
         createDoc(docs[5], 'rich-text'),
         createDoc(docs[6], 'rich-text'),
         createDoc(docs[7], 'rich-text'),
+        createDoc(docs[8], 'rich-text'),
+        createDoc(docs[9], 'rich-text'),
+        createDoc(docs[10], 'rich-text'),
         createCounter(counter),
         createTimerDoc(timerDocs[0]),
         createTimerDoc(timerDocs[1]),
